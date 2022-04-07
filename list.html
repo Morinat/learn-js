@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+    let ul = document.createElement('ul')
+    document.body.prepend(ul)
+    while (true) {
+        let text = prompt('Input your string: ', '')
+        let newInput = document.createElement('li')
+        newInput.textContent = text
+        if (!text) break
+        ul.append(newInput)
+    }
+    console.log(document.body)
+</script>
+</body>
+</html>
