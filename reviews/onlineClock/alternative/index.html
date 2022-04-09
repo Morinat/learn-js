@@ -1,22 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <style>
-        #clock {
-            display: inline-block;
-            margin-right: 1em;
-            margin-bottom: 1em;
-        }
-        #indicator {
-            display: inline-block;
-            height: 1em;
-            width: 1em;
-            border-radius: .5em;
-        }
-            #indicator.active {
-                background-color: red;
-            }
-    </style>
+    <link rel="stylesheet" href="./styles/clock.css">
 </head>
 <body>
 
@@ -25,36 +10,7 @@
     <input type="button" onclick="clockStart()" value="Старт">
     <input type="button" onclick="clockStop()" value="Стоп">
 
-    <script>
-        let clockOn = false
-
-        const zeropad = number => '' +
-            (number < 10 ? '0' : '') +
-            number
-
-        const renderCurrentTime = () => {
-            const now = new Date()
-            const hh = zeropad(now.getHours())
-            const mm = zeropad(now.getMinutes())
-            const ss = zeropad(now.getSeconds())
-            const clock = this.document.getElementById('clock')
-            clock.innerText = `${hh}:${mm}:${ss}`
-        }
-
-        function clockStart () {
-            clockOn = true
-            this.document.getElementById('indicator').classList.add('active')
-        }
-
-        function clockStop () {
-            clockOn = false
-            this.document.getElementById('indicator').classList.remove('active')
-        }
-
-        renderCurrentTime()
-        setInterval(() => clockOn && renderCurrentTime(), 500)
-
-    </script>
+    <script src="./scripts/clock.js"></script>
 
 </body>
 </html>
