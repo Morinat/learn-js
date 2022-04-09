@@ -4,15 +4,7 @@ const getMonthNumberOfDays = (year, month) => {
     return last.getDate()
 }
 
-function createCalendar(elem, year, month) {
-    let firstDayOfMonth = new Date(year, month, 1)
-    let firstweekDay = firstDayOfMonth.getDay() - 1
-    let numberOfDays = getMonthNumberOfDays(year, month)
-
-    let table = document.createElement('table')
-    elem.appendChild(table)
-
-    // creating first row with day names
+const createDayNamesCalendarRow = () => {
     let dayRow = document.createElement('tr')
     let week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     for (let j = 0; j < 7; j++) {
@@ -21,7 +13,17 @@ function createCalendar(elem, year, month) {
         cell.appendChild(cellText)
         dayRow.appendChild(cell)
     }
-    table.appendChild(dayRow)
+    return dayRow
+}
+
+function createCalendar(elem, year, month) {
+    let firstDayOfMonth = new Date(year, month, 1)
+    let firstWeekDay = firstDayOfMonth.getDay() - 1
+    let numberOfDays = getMonthNumberOfDays(year, month)
+
+    let table = document.createElement('table')
+    elem.appendChild(table)
+    table.appendChild(createDayNamesCalendarRow())
 
     // creating whole table
     let dayCounter = 1
@@ -31,7 +33,7 @@ function createCalendar(elem, year, month) {
             let cell = document.createElement('td')
             let cellText
             // inserting days
-            if (i === 0 && j === firstweekDay) {
+            if (i === 0 && j === firstWeekDay) {
                 cellText = document.createTextNode(dayCounter)
                 dayCounter++
             } else if (dayCounter <= numberOfDays && dayCounter > 1) {
@@ -47,7 +49,7 @@ function createCalendar(elem, year, month) {
         table.appendChild(row)
     }
 
-    console.log(table)
+    // console.log(table)
 }
 
 createCalendar(calendar, 2022, 2);
