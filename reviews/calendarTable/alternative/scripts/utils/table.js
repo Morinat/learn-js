@@ -40,7 +40,7 @@ const createPrimaryCalendarRows = (firstWeekDay, numberOfDays) => {
     let dayCounter = 1
     let row
     const rows = []
-    const numOfWeeks = 5
+    const numOfWeeks = 6
     for (let i = 0; i < numOfWeeks; i++) {
         ({ row, dayCounter } = createPrimaryCalendarRow(
             dayCounter, i, firstWeekDay, numberOfDays
