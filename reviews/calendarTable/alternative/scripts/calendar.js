@@ -1,11 +1,13 @@
+const getMonthNumberOfDays = (year, month) => {
+    let last = new Date(year, month + 1, 1)
+    last.setDate(0)
+    return last.getDate()
+}
+
 function createCalendar(elem, year, month) {
     let firstDayOfMonth = new Date(year, month, 1)
     let firstweekDay = firstDayOfMonth.getDay() - 1
-    let numberOfDays = (function () {
-        let last = new Date(year, month + 1, 1) 
-        last.setDate(0)
-        return last.getDate()
-    })()
+    let numberOfDays = getMonthNumberOfDays(year, month)
 
     let table = document.createElement('table')
     elem.appendChild(table)
