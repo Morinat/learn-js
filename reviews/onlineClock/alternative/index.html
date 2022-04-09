@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+    <div id="clock"></div>
+    <input type="button" onclick="clockStart()" value="Старт">
+    <input type="button" onclick="clockStop()" value="Стоп">
+
+    <script>
+        let clock = document.createTextNode('hh:mm:ss')
+        document.body.prepend(clock)
+        let timer
+
+        const zeropad = number => '' +
+            (number < 10 ? '0' : '') +
+            number
+
+        const renderCurrentTime = () => {
+            const now = new Date()
+            const hh = zeropad(now.getHours())
+            const mm = zeropad(now.getMinutes())
+            const ss = zeropad(now.getSeconds())
+            const clock = this.document.getElementById('clock')
+            clock.textContent = `${hh}:${mm}:${ss}`
+        }
+
+        function clockStart () {
+            timer = setTimeout(renderCurrentTime, 1000)
+        }
+
+        function clockStop () {
+            return clearTimeout(timer)
+        }
+
+        renderCurrentTime()
+
+    </script>
+
+</body>
+</html>

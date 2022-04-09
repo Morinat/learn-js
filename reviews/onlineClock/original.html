@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+  <input type="button" onclick="clockStart()" value="Старт">
+  <input type="button" onclick="clockStop()" value="Стоп">
+
+    <script>
+        let clock = document.createTextNode('hh:mm:ss')
+        document.body.prepend(clock)
+        let timer
+
+        function clockStart () {
+            let date = new Date()
+            let hours = date.getHours()
+            if (hours < 10) hours = '0' + date.getHours()
+            let min = date.getMinutes()
+            if (min < 10) min = '0' + date.getMinutes()
+            let sec = date.getSeconds()
+            if (sec < 10) sec = '0' + date.getSeconds()
+
+            clock.textContent = `${hours}:${min}:${sec}`
+            timer = setTimeout(clockStart, 1000)
+        }
+
+        function clockStop () {
+            return clearTimeout(timer)
+        }
+
+    </script>
+
+</body>
+</html>
