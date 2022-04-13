@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        tr > td:first-child {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr><th>Yet another table</th></tr>
+    </table>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Smith</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Pete</td>
+                <td>Brown</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Ann</td>
+                <td>Lee</td>
+                <td>5</td>
+            </tr>
+        </tbody>
+  </table>
+
+  <script>
+    function parseTable () {
+        let cells = document.getElementById('table').tBodies[0].getElementsByTagName('td')
+        const people = []
+        for (let i = 0; i < cells.length; i += 3) {
+            const person = {
+                name: cells[i].innerText,
+                surname: cells[i+1].innerText,
+                age: parseInt(cells[i+2].innerText)
+            }
+            people.push(person)
+        }
+        return people
+    }
+
+    function renderTable (people) {
+        document.getElementById('table').tBodies[0].innerHTML = people.reduce(
+            (acc, p) =>
+                acc + `<tr><td>${p.name}</td><td>${p.surname}</td><td>${p.age}</td></tr>`,
+            '' //'<tr><th>Имя</th><th>Фамилия</th><th>Возраст</th></tr>'
+        )
+    }
+
+    function tableSort () {
+        const people = parseTable()        
+        people.sort((p1, p2) => p1.name > p2.name ? 1 : p1.name === p2.name ? 0 : -1)
+        renderTable(people)
+    }
+    tableSort()
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+      position: absolute;
+    }
+
+    #ball {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Нажмите на поле для перемещения мяча.
+  <br> Мяч не должен выходить за границы поля.
+
+
+  <div id="field">
+    <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+      document.getElementById('field').addEventListener('click', function (event) {
+        let field = document.getElementById('field')
+        let ball = document.getElementById('ball')
+
+        if (event.offsetX > (field.clientWidth - ball.width / 2)) {
+            ball.style.left = field.clientWidth - ball.width + 'px'
+            console.log('more XXX')
+            console.log(ball.style.left)
+        } else if (event.offsetX < (field.style.border + ball.width / 2)) {
+            ball.style.left = 0 + 'px'
+            console.log('border')
+        } else {
+            ball.style.left = event.offsetX - ball.width / 2 + 'px'
+        }
+
+        if (event.offsetY > (field.clientHeight - ball.width / 2)) {
+            ball.style.top = field.clientHeight - ball.width - field.style.border + 'px'
+            console.log('more')
+        } else if (event.offsetY < (field.style.border + ball.width / 2)) {
+            ball.style.top = 0 + 'px'
+            console.log('border')
+        } else {
+            ball.style.top = event.offsetY - ball.width / 2 + 'px'
+        }
+        console.log(event.offsetX, event.offsetY)
+      })
+  </script>
+
+</body>
+</html>
