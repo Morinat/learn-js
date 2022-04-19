@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .slider {
+        border-radius: 5px;
+        background: #E0E0E0;
+        background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+        width: 310px;
+        height: 15px;
+        margin: 5px;
+        /* position: relative; */
+    }
+
+    .thumb {
+        width: 10px;
+        height: 25px;
+        border-radius: 3px;
+        /* position: absolute; */
+        position: relative;
+        left: 10px;
+        top: -5px;
+        background: blue;
+        cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider')
+    const thumb = document.getElementsByClassName('thumb')[0]
+    
+    thumb.ondragstart = function () {
+        return false
+    }
+    thumb.addEventListener('mousedown', onMouseDown)
+
+    function onMouseDown (event) {
+        let target = event.target
+        if (target.tagName != 'DIV') return
+        document.addEventListener('mousemove', movingMouse)
+        document.addEventListener('mouseup', releaseMouse)
+    }
+
+    function movingMouse (event) {
+        moveAtNewPosition(event.pageX)
+    }
+
+    function moveAtNewPosition (x) {
+        // thumb.style.left = x + 'px'
+        // if (x >= slider.offsetWidth) {
+        //     console.log('too much!')
+        //     thumb.style.left = slider.offsetWidth - 5 + 'px'
+        // }
+        thumb.style.left = Math.min(slider.offsetWidth -5, x) + 'px'
+        console.log(thumb.style.left)
+    }
+
+    function releaseMouse () {
+        document.removeEventListener('mousemove', movingMouse)
+    }
+  </script>
+
+</body>
+</html>
