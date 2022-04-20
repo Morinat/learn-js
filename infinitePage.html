@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style>
+      body {
+          height: 700px;
+      }
+
+      li {
+          list-style: none;
+          margin-bottom: 5px;
+      }
+  </style>
+</head>
+
+<body>
+
+<h1>Прокрути меня</h1>
+
+<ul id='ul'></ul>
+
+<script>
+  window.addEventListener('scroll', defineScrollingPosition)
+
+    let previousPosition = 0
+
+    function defineScrollingPosition () {
+        if (previousPosition < pageYOffset) {
+            createNewElement()
+            previousPosition = pageYOffset
+        }
+    }
+
+    const ul = document.getElementById('ul')
+    let li
+    
+    function createNewElement () {
+        //console.log(pageYOffset)
+        let date = new Date()
+        li = document.createElement('li')
+        let hours = date.getHours()
+        if (hours < 10) hours = '0' + hours
+        let minutes = date.getMinutes()
+        if (minutes < 10) minutes = '0' + minutes
+        let seconds = date.getSeconds()
+        if (seconds < 10) seconds = '0' + seconds
+        li.innerHTML = `Time: ${hours}:${minutes}:${seconds} GMT+0300 (Москва, стандартное время)`
+        ul.append(li)
+        console.log(ul.offsetHeight)
+    }
+
+    while (ul.offsetHeight < document.body.offsetHeight) {
+            createNewElement()
+            console.log(document.body.offsetHeight)
+    }
+
+</script>
+
+</body>
+</html>

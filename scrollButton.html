@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #matrix {
+      width: 400px;
+      margin: auto;
+      overflow: auto;
+      text-align: justify;
+    }
+
+    #arrowTop {
+      height: 9px;
+      width: 14px;
+      color: green;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #arrowTop::before {
+      content: '▲';
+    }
+
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <div id="matrix">
+    <script>
+      for (let i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+  </div>
+
+  <div id="arrowTop"></div>
+
+  <script>
+    const arrow = document.getElementById('arrowTop')
+
+    const showArrow = () => {
+        // pageYOffset < document.body.offsetHeight ? arrow.hidden = true : arrow.hidden = false
+        // arrow.hidden = pageYOffset < document.body.offsetHeight
+        arrow.style.display = pageYOffset > document.body.offsetHeight ? 'block' : 'none'
+    }
+
+    const returnToTop = () => {window.scrollTo(0, 0)}
+
+    window.addEventListener('scroll', showArrow)
+    arrow.addEventListener('mousedown', returnToTop)
+
+  </script>
+
+</body>
+</html>

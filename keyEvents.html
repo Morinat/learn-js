@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <title>Key events</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <p> Press any keys together to see alert </p>
+
+        <script>
+
+            document.addEventListener('keydown', countKeydowns)
+            document.addEventListener('keyup', changeFlag)
+
+            let keysDown = 0
+            let eventCollection = []
+
+            function countKeydowns (event) {
+                keysDown++
+                eventCollection.push(event.code)
+            }
+
+            function changeFlag () {
+                keysDown--;
+                if (keysDown <= 0) {
+                    doSomething ()
+                    keysDown = 0
+                    eventCollection = []
+                }
+            }
+
+            function doSomething () {
+                console.log(eventCollection)
+                runOnKeys(() => alert("Привет!"),
+                    "KeyQ",
+                    "KeyW"
+                )
+            }
+
+            function runOnKeys (func, ...keys) {
+                if (areSame(eventCollection, keys)) {
+                    func()
+                }
+
+                function areSame (arr1, arr2) {
+                    if (arr1.length !== arr2.length) {
+                        return false
+                    }
+                    return arr1.every(el => arr2.includes(el))
+                }
+                
+            }
+
+            // function runOnKeys (func, code1, code2, ... code_n) {
+            //     let funcArgs = arguments
+            //     let counter = 1
+            //     if (eventCollection.length != funcArgs.length - 1) return
+
+            //     for (let i = 0; i < eventCollection.length; i++) {
+            //         for (let j = 0; j < (funcArgs.length - 1); j++) {
+            //             if (eventCollection[i] === funcArgs[j]) {
+            //                     counter++
+            //             }
+            //         }
+            //     }
+            //     counter === eventCollection.length ? func() : -1
+            // }
+        </script>
+    </body>
+
+</html>
