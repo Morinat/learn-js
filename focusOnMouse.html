@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Кликните по "изображению" мыши и перемещайте её с помощью клавиш со стрелками.</p>
+
+  <pre id="mouse">
+     _   _
+    (q\_/p)
+     /. .\
+    =\_t_/=   __
+     /   \   (
+    ((   ))   )
+    /\) (/\  /
+    \  Y  /-'
+     nn^nn
+    </pre>
+
+
+  <script>
+    const mouse = document.getElementById('mouse')
+    mouse.tabIndex = 0
+
+    const beginMyWay = () => {mouse.style.position = 'fixed'}
+
+    function moveMouse (event) {
+        console.log('keydown')
+        let coords = mouse.getBoundingClientRect()
+
+        if (event.code === 'ArrowRight') {
+            mouse.style.left = coords.left + 10 + 'px'
+            mouse.style.top = coords.top + 'px'
+        } else if (event.code === 'ArrowLeft') {
+            mouse.style.left = coords.left - 10 + 'px'
+            mouse.style.top = coords.top + 'px'
+        } else if (event.code === 'ArrowUp') {
+            mouse.style.left = coords.left + 'px'
+            mouse.style.top = coords.top - 10 + 'px'
+        } else if (event.code === 'ArrowDown') {
+            mouse.style.left = coords.left + 'px'
+            mouse.style.top = coords.top + 10 + 'px'
+        }
+    }
+
+    mouse.addEventListener('click', beginMyWay)
+    mouse.addEventListener('keydown', moveMouse)
+
+  </script>
+
+</body>
+
+</html>
