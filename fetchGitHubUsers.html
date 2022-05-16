@@ -1,0 +1,34 @@
+<!doctype html>
+
+    <script src="https://ru.js.cx/test/libs.js"></script>
+
+    <script>
+        describe("getUsers", function () {
+            it("gets users from GitHub", async function() {
+              let users = await getUsers(['iliakan', 'remy', 'no.such.users']);
+              assert.equal(users[0].login, 'iliakan');
+              assert.equal(users[1].login, 'remy');
+              assert.equal(users[2], null);
+            })
+        })
+    </script>
+
+    <script>
+        async function getUsers (names) {
+          const users = []
+            for (let name of names) {
+                let url = 'https://api.github.com/users/' + name
+                let response = await fetch(url)
+                let result
+                if (response.ok) {
+                    result = await response.json()
+                } else {
+                    result = null
+                }
+                users.push(result)
+            }
+            return users
+        }
+    </script>
+
+</html>
