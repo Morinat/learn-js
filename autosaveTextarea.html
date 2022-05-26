@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+    <body>
+        <textarea style="width:200px; height: 60px;" id="area" placeholder="Напишите сообщение здесь"></textarea>
+    </body>
+
+    <script>
+        const textArea = document.getElementById('area')
+        textArea.addEventListener('change', saveText)
+        textArea.value = localStorage.getItem('text')
+
+        const button = document.createElement('button')
+        button.innerHTML = 'Очистить'
+        button.type = 'button'
+        button.style = "display:block;"
+        document.body.append(button)
+        button.addEventListener('click', () => textArea.value = "")
+
+        function saveText () {
+            text = textArea.value
+            localStorage.setItem('text', text)
+        }
+  
+    </script>
+
+</html>

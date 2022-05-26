@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <style>
+            img {
+            cursor: pointer;
+            }
+        </style>
+        <style>
+            #flyjet {
+                width: 40px;
+                height: 24px;
+                transition: all 3s;
+            }
+
+            #flyjet.animated {
+                width: 400px;
+                height: 240px;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+    </body>
+
+    <script>
+        const flyjet = document.getElementById('flyjet')
+
+        flyjet.addEventListener('click', () => flyjet.classList.add('animated'))
+        flyjet.addEventListener('transitionend', alertDone)
+        
+        function alertDone () {
+            alert('Done!')
+            flyjet.removeEventListener('transitionend', alertDone)
+        }
+
+    </script>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .circle {
+            transition-property: width, height;
+            transition-duration: 2s;
+            position: fixed;
+            transform: translateX(-50%) translateY(-50%);
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .message-ball {
+            position: fixed;
+            text-align: center;
+            font-size: 20px;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let x = 150
+        let y = 150
+        let rad = 100
+
+        const button = document.createElement('button')
+        button.innerHTML = `showCircle(${x}, ${y}, ${rad})`
+        document.body.append(button)
+        button.onclick = () => showCircle(x, y, rad, circle => {
+                circle.classList.add('message-ball');
+                circle.append("Привет, мир!");
+            })
+
+        function showCircle (cx, cy, radius, callback) {
+            let circle = document.createElement('div')
+            circle.classList.add('circle')
+            circle.style.width = circle.style.height = 0 + 'px'
+            circle.style.top = cy + 'px'
+            circle.style.left = cx + 'px'
+            document.body.appendChild(circle)
+
+            setTimeout( () => {
+                circle.style.width = circle.style.height = radius * 2 + 'px'
+                circle.addEventListener('transitionend', function handler () {
+                    callback(circle)
+                    circle.removeEventListener('transitionend', handler)
+                    }
+                )
+            }, 0)
+        }
+
+    </script>
+</body>
+</html>

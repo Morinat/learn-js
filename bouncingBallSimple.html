@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        #field {
+            height: 200px;
+            border-bottom: 3px black groove;
+            position: relative;
+        }
+
+        #ball {
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://js.cx/libs/animate.js"></script>
+</head>
+
+<body>
+
+    <div id="field">
+        <img src="https://en.js.cx/clipart/ball.svg" width="40" height="40" id="ball">
+    </div>
+
+    <script>
+
+        function bounce (timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+
+        function makeEaseOut (timing) {
+            return function (timeFraction) {
+                return 1 - timing(1 - timeFraction)
+            }
+        }
+
+        const bounceEaseOut = makeEaseOut(bounce)
+
+        let fieldSize = field.getBoundingClientRect()
+        let ballSize = ball.getBoundingClientRect()
+
+        ball.onclick = function () {
+            animate({
+                duration: 3000,
+                timing: bounceEaseOut,
+                draw: function (progress) {
+                    ball.style.top = progress * fieldSize.height - ballSize.width + 'px';
+                }
+            })
+        }
+
+    </script>
+
+
+</body>
+
+</html>
