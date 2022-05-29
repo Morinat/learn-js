@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+
+            let regexp = /java(script)?|php|c(\+\+)?/ig
+
+            //alert("Java JavaScript PHP C++ C".match(regexp))
+
+            let regexp1 = /\[(quote|url|b)\].*?\[\/\1]/gs
+
+            let str = `[b]привет![/b]
+                [quote]
+                    [url]http://ya.ru[/url]
+                [/quote]
+                `
+            //alert( str.match(regexp1) )
+
+            let regexp2 = /"(\\.|[^"\\])*"/g
+            let test = ' .. "test me" .. "Скажи \\"Привет\\"!" .. "\\\\ \\"" .. '
+
+            //alert( test.match(regexp2) )
+
+            let regexp3 = /<style(>|\s.+?>)/ig
+
+            alert('<style> <styler> <style test="...">'.match(regexp3))
+
+            let string = "1 индейка стоит 30€"
+
+            alert( string.match(/\d+(?=.*30)(?=\s)/) )
+
+        </script>
+    </body>
