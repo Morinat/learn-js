@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+        #innerCover {
+            position: absolute;
+            background-color: aquamarine;
+            width: 100%;
+            height: 100%;
+            margin: 20px;
+        }
+
+        #cover {
+            display: flex;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            opacity: 50%;
+            z-index: 888;
+        }
+
+        #modalW {
+            background: url(https://js.cx/clipart/key.png) 3px 5px white no-repeat;
+            background-color: teal;
+            border: 1px solid black;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 140px;
+            margin-top: -70px;
+            margin-left: -150px;
+            padding-left: 60px;
+            padding-top: 10px;
+            z-index: 999;
+        }
+
+        label {
+            display: inline-block;
+            margin: 5px;
+            width: 55px; 
+        }
+
+        input {
+            margin: 5px;
+        }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+    <div id='cover'>
+        <div id='innerCover'></div>
+    </div>
+
+    <form id='modalW'>
+        <span>Welcome to my site!</span><br><br>
+        <label>Login</label>  
+        <input type="text"><br>  
+        <label>Password</label>  
+        <input type="text"><br>
+        <input type="button" value='Enter'>
+    </form>
+
+    <p>Текст Текст Текст</p>
+
+    <button onclick="alert('Эта кнопка не должна работать')">Эта кнопка не работает</button>
+
+    <p>Текст Текст Текст</p>
+
+</body>
+
+</html>

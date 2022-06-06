@@ -8,8 +8,33 @@
       height: 40px;
       width: 80%;
       margin: auto;
+      cursor: pointer;
+      text-align: center;
     }
-    /* ваш код */
+
+    .pages {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        border: 2px solid red;
+    }
+
+    .pages li {
+        display: inline;
+        margin: 0 3px;
+        line-height: 40px;
+    }
+
+    .left {
+        float: left;
+        border: 2px solid red;
+    }
+
+    .right {
+        float: right;
+        border: 2px solid red;
+    }
+
   </style>
 </head>
 
@@ -19,6 +44,8 @@
 
   <div class="nav">
     <img src="https://js.cx/clipart/arrow-left.jpg" class="left" width="40" height="40">
+    <img src="https://js.cx/clipart/arrow-right.jpg" class="right" width="40" height="40">
+
 
     <ul class="pages">
       <li>1</li>
@@ -32,8 +59,8 @@
       <li>9</li>
     </ul>
 
-    <img src="https://js.cx/clipart/arrow-right.jpg" class="right" width="40" height="40">
   </div>
+  <div style="clear:both"></div>
   Текст Снизу
 
 </body>
